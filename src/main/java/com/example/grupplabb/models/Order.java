@@ -10,7 +10,7 @@ public class Order {
     private String id;
     private String user;
 
-    private String products;
+    private String[] products;
     @NotBlank (message = "Field cannot be blank.")
     private String totalPrice;
 
@@ -32,14 +32,14 @@ public class Order {
     }
 
     public void setProducts(String products) {
-        this.products = products;
+        this.products = new String[]{products};
     }
 
     public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public String getProducts() {
+    public String[] getProducts() {
         return products;
     }
 }
