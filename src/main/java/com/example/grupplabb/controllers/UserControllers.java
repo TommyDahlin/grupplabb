@@ -7,30 +7,30 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/user")
 public class UserControllers {
     @Autowired
     UserService userService;
-    @PostMapping("/adduser")
+    @PostMapping("/add")
     public User createBook(@RequestBody User user){
         return userService.createUser(user);
     }
     // GET ALL
-    @GetMapping("/getallusers")
+    @GetMapping("/find")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
     //GET ONE
-    @GetMapping("/getuser/{id}")
+    @GetMapping("/find/{id}")
     public User getUser(@PathVariable String id){
         return userService.getOneUser(id);
     }
     // UPDATE ONE
-    @PutMapping("/updateuser/{id}")
+    @PutMapping("/update/{id}")
     public User updateUser(@RequestBody User user, @PathVariable("id") String _id){
         return userService.updateUser(user);
     }
-    @DeleteMapping("/deleteuser/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable String id) {
         return userService.deleteUser(id);
     }
