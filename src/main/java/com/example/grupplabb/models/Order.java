@@ -11,7 +11,7 @@ public class Order {
     private String user;
 
     // Make products refer to productId
-    private String[] products;
+    private Product[] products;
     @NotNull(message = "Field cannot be blank.")
     private int totalPrice;
 
@@ -34,8 +34,8 @@ public class Order {
         this.user = user;
     }
 
-    public void setProducts(String products) {
-        this.products = new String[]{products};
+    public void setProducts(Product[] products) {
+        this.products = products;
     }
 /*
     public void setTotalPrice(String totalPrice) {
@@ -44,7 +44,7 @@ public class Order {
     */
 
 
-    public String[] getProducts() {
+    public Product[] getProducts() {
         return products;
     }
 
