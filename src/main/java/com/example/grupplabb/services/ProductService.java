@@ -1,7 +1,9 @@
 package com.example.grupplabb.services;
 
 import com.example.grupplabb.exception.EntityNotFoundException;
+import com.example.grupplabb.models.Category;
 import com.example.grupplabb.models.Product;
+import com.example.grupplabb.repositories.CategoryRepository;
 import com.example.grupplabb.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,15 @@ import java.util.List;
 public class ProductService {
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
 
     // skapa en produkt
     public Product addProduct(Product product) {
+        Category findCategory = categoryRepository.findById(product.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Couldn't find category."));
+        product.setCategory(findCategory);
         return productRepository.save(product);
     }
 
