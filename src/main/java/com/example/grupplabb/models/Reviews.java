@@ -1,6 +1,8 @@
 package com.example.grupplabb.models;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "reviews")
@@ -9,12 +11,21 @@ public class Reviews {
     @Id
     private String id;
 
-    //@DBRef
+
+    @NotBlank(message = "Cannot be blank!")
+
     private String productId;
 
-    //@DBRef
+    @DBRef
+    private Product product;
+
+    @NotBlank(message = "Cannot be blank!")
     private String userId;
 
+    @DBRef
+    private User user;
+
+    @NotBlank(message = "Cannot be blank!")
     private String content;
 
     public Reviews() {
@@ -38,5 +49,21 @@ public class Reviews {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

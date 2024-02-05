@@ -2,6 +2,7 @@ package com.example.grupplabb.controllers;
 
 import com.example.grupplabb.models.Reviews;
 import com.example.grupplabb.services.ReviewsService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class ReviewController {
 
     // POST review
     @PostMapping("/add")
-    public Reviews addReview(@RequestBody Reviews review) {
+    public Reviews addReview(@Valid @RequestBody Reviews review) {
         return reviewsService.addReview(review);
     }
 
