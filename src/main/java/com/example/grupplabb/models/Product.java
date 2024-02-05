@@ -10,6 +10,7 @@ public class Product {
     @Id
     private String id;
 
+    // Have product reference CategoryId
     @NotBlank(message = "Field cannot be blank.")
     private String title;
 
