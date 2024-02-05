@@ -38,4 +38,8 @@ public class Order {
     public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public String getProducts() {
+        return products;
+    }
 }
