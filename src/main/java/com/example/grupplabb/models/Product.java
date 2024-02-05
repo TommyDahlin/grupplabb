@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "products")
@@ -17,6 +18,9 @@ public class Product {
 
     private String description;
 
+    private String categoryId;
+    @DBRef
+    private Category category;
     @NotNull(message = "Field cannot be blank.")
     private int price;
 
@@ -39,9 +43,21 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+    public String getCategoryId(){
+        return categoryId;
+    }
 
+    public Category getCategory() {
+        return category;
+    }
 
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
+    public void setCategory(Category category){
+        this.category = category;
+    }
     public String getId() {
         return id;
     }
