@@ -43,17 +43,14 @@ public class OrderControllers {
     }
 
     // PUT update order by ID
-    @PutMapping("//{id}")
+    @PutMapping("/update/{id}")
     public Order updateOrder(@RequestBody Order order, @PathVariable("id") String _id) {
         return orderService.updateOrder(order);
     }
 
     // DELETE order by ID
-    @DeleteMapping("/deleteorder/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteOrder(@PathVariable String id) {
         return orderService.deleteOrder(id);
     }
-
-
-
-    }
+}
