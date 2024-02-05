@@ -1,18 +1,31 @@
 package com.example.grupplabb.models;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "order")
 public class Order {
     @Id
     private String id;
-    private String user;
+    @NotBlank(message = "Field cannot be blank")
 
-    // Make products refer to productId
-    private String[] products;
+    private String userId;
+
+    @DBRef
+    private User user;
+
+    @NotBlank(message = "Field cannot be blank")
+
+    private String productId;
+
+    @DBRef
+    private Product product;
+
     @NotNull(message = "Field cannot be blank.")
+
     private int totalPrice;
 
 
@@ -21,32 +34,6 @@ public class Order {
     public String getId() {
         return id;
     }
-    public String getUser() {
-        return user;
-    }
-
-    /*
-    public String getTotalPrice() {
-        return totalPrice;
-    }
-*/
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public void setProducts(String products) {
-        this.products = new String[]{products};
-    }
-/*
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-    */
-
-
-    public String[] getProducts() {
-        return products;
-    }
 
     public int getTotalPrice() {
         return totalPrice;
@@ -54,5 +41,22 @@ public class Order {
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
