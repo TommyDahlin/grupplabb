@@ -1,5 +1,6 @@
 package com.example.grupplabb.models;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -13,7 +14,10 @@ public class Order {
     private String user;
 
     // Make products refer to productId
-    private String products;
+    @NotBlank(message = "Field cannot be blank")
+    private String productId;
+    @DBRef
+    private Product product;
     @NotNull(message = "Field cannot be blank.")
     private int totalPrice;
 
@@ -27,28 +31,9 @@ public class Order {
         return user;
     }
 
-    /*
-    public String getTotalPrice() {
-        return totalPrice;
-    }
-*/
     public void setUser(String user) {
         this.user = user;
     }
-
-    /*public void setProducts(Product[] products) {
-        this.products = products;
-    }*/
-/*
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-    */
-
-
-   /* public Product[] getProducts() {
-        return products;
-    }*/
 
     public int getTotalPrice() {
         return totalPrice;
@@ -58,11 +43,12 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public String getProducts() {
-        return products;
+
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
