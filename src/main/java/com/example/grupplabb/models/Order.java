@@ -10,15 +10,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Order {
     @Id
     private String id;
-
-    private String user;
-
-    // Make products refer to productId
     @NotBlank(message = "Field cannot be blank")
+
+    private String userId;
+
+    @DBRef
+    private User user;
+
+    @NotBlank(message = "Field cannot be blank")
+
     private String productId;
+
     @DBRef
     private Product product;
+
     @NotNull(message = "Field cannot be blank.")
+
     private int totalPrice;
 
 
@@ -26,13 +33,6 @@ public class Order {
     }
     public String getId() {
         return id;
-    }
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public int getTotalPrice() {
@@ -50,5 +50,13 @@ public class Order {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
