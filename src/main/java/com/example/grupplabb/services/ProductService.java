@@ -33,9 +33,10 @@ public class ProductService {
                     if (updatedProduct.getDescription() != null) {
                         existingProduct.setDescription(updatedProduct.getDescription());
                     }
-                    if (updatedProduct.getPrice() != null){
+                    if (updatedProduct.getPrice() != 0){
                         existingProduct.setPrice(updatedProduct.getPrice());
                     }
+
                     return productRepository.save(existingProduct);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("product with id: " + id + " was not found!"));
