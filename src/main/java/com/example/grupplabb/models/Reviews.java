@@ -1,7 +1,6 @@
 package com.example.grupplabb.models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "reviews")
@@ -10,10 +9,10 @@ public class Reviews {
     @Id
     private String id;
 
-    @DBRef
+    //@DBRef
     private String produktId;
 
-    @DBRef
+    //@DBRef
     private String userId;
 
     private String content;
