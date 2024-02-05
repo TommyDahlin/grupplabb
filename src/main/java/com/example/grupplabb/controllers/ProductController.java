@@ -19,7 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     // SKAPA NY - POST
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product) {
 
         Product newProduct = productService.addProduct(product);
@@ -27,20 +27,20 @@ public class ProductController {
     }
 
     // GET all products
-    @GetMapping("/all")
+    @GetMapping("/find")
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
     // DELETE product
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable String id) {
         productService.deleteProduct(id);
         return ResponseEntity.ok("Product with id: " + id + " has been deleted!");
     }
 
     // PUT
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateProduct(@PathVariable String id,  @RequestBody Product productDetails) {
         try {
             Product updatedProduct = productService.updateProduct(id, productDetails);

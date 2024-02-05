@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping(value = "/api/orders")
 public class OrderControllers {
 
-@Autowired
+    @Autowired
     OrderService orderService;
 
     // POST create new order
@@ -25,19 +25,13 @@ public class OrderControllers {
     }
 
     // Get all orders
-    @GetMapping("/all")
+    @GetMapping("/find")
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
     }
 
-    /*public ResponseEntity<?> getAllOrders(@RequestBody Product[] products) {
-        orderService.getAllOrders();
-        return ResponseEntity.ok("Orders fetched successfully based on provided products");
-    }*/
-
-
     // GET one order
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public Order getOrder(@PathVariable String id) {
         return orderService.getOneOrder(id);
     }
