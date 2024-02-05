@@ -22,7 +22,7 @@ public class ReviewController {
     }
 
     // GET reviews
-    @GetMapping("list-all")
+    @GetMapping("find")
     public List<Reviews> listAllReviews() {
         return reviewsService.listAllReviews();
     }
