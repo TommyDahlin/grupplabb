@@ -10,7 +10,7 @@ public class Reviews {
     private String id;
 
     //@DBRef
-    private String produktId;
+    private String productId;
 
     //@DBRef
     private String userId;
@@ -24,8 +24,8 @@ public class Reviews {
         return id;
     }
 
-    public String getProduktId() {
-        return produktId;
+    public String getProductId() {
+        return productId;
     }
 
     public String getUserId() {

@@ -10,6 +10,7 @@ public class Order {
     private String id;
     private String user;
 
+    // Make products refer to productId
     private String[] products;
     @NotNull(message = "Field cannot be blank.")
     private int totalPrice;
