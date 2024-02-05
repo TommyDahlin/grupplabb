@@ -1,16 +1,22 @@
 package com.example.grupplabb.controllers;
 
+import com.example.grupplabb.exception.EntityNotFoundException;
 import com.example.grupplabb.models.Product;
+import com.example.grupplabb.services.ProductService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/api/products")
 public class ProductController {
+
+    @Autowired
+    private ProductService productService;
 
     // SKAPA NY - POST
     @PostMapping
@@ -20,9 +26,27 @@ public class ProductController {
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
-    // GET all
+    // GET all products
     @GetMapping("/all")
-    public List<Recipe> getAllRecipes() {
-        return recipeService.getAllRecipes();
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
+
+    // DELETE product
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable String id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("Product with id: " + id + " has been deleted!");
+    }
+
+    // PUT
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable String id,  @RequestBody Product productDetails) {
+        try {
+            Product updatedProduct = productService.updateProduct(id, productDetails);
+            return ResponseEntity.ok(updatedProduct);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 }

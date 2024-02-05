@@ -13,8 +13,9 @@ public class Product {
     private String title;
 
     private String description;
-    @NotBlank(message = "Field cannot be blank, price must be inserted.")
-    private int price;
+
+    @NotBlank(message = "Field cannot be blank.")
+    private String price;
 
 
     public Product() {
@@ -36,15 +37,17 @@ public class Product {
         this.description = description;
     }
 
-    public int getPrice() {
-        return price;
-    }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     public String getId() {
         return id;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
