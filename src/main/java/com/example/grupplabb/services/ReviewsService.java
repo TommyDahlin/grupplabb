@@ -8,7 +8,6 @@ import com.example.grupplabb.repositories.ReviewsRepository;
 import com.example.grupplabb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

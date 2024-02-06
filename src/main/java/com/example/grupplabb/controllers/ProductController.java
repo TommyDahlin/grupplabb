@@ -7,16 +7,40 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Controller
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private Product product;
+
+    @GetMapping("/webpage")
+    public String Form(Model model){
+        model.addAttribute("product", new Product());
+        return "webpage";
+    }
+
+    @GetMapping("/personResult")
+    public String personSubmit(@RequestParam String , @RequestParam String title, Model model){
+
+        model.addAttribute("product", product);
+        return "personresult";
+    }
+
+
+
+
+
+
 
     // SKAPA NY - POST
     @PostMapping("/add")
