@@ -20,20 +20,20 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-    @Autowired
+
     private Product product;
 
     @GetMapping("/webpage")
-    public String Form(Model model){
-        model.addAttribute("product", new Product());
+    public String productForm(Model model){
+
         return "webpage";
     }
 
-    @GetMapping("/personResult")
-    public String personSubmit(@RequestParam String , @RequestParam String title, Model model){
+    @GetMapping("/productResult")
+    public String productSubmit(@RequestParam String title , @RequestParam String description, int price, Model model){
 
         model.addAttribute("product", product);
-        return "personresult";
+        return "productresult";
     }
 
 
