@@ -6,26 +6,27 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document(collection = "order")
 public class Order {
     @Id
     private String id;
-    @NotBlank(message = "Field cannot be blank")
 
+    @NotBlank(message = "Field cannot be blank")
     private String userId;
 
     @DBRef
     private User user;
 
     @NotBlank(message = "Field cannot be blank")
-
-    private String productId;
+    private List<String> productId = new ArrayList<>();
 
     @DBRef
-    private Product product;
+    private List<Product> product = new ArrayList<>();
 
     @NotNull(message = "Field cannot be blank.")
-
     private int totalPrice;
 
 
@@ -44,12 +45,12 @@ public class Order {
     }
 
 
-    public String getProductId() {
+    public List<String> getProductId() {
         return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public List<Product> getProduct() {
+        return product;
     }
 
     public String getUserId() {
@@ -59,4 +60,13 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void setProductId(List<String> productId) {
+        this.productId = productId;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
 }

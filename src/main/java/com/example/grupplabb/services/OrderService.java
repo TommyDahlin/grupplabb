@@ -10,6 +10,7 @@ import com.example.grupplabb.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,10 +27,19 @@ public class OrderService {
     public Order createOrder(Order order) {
         User foundUser = userRepository.findById(order.getUserId())
                 .orElseThrow(() -> new RuntimeException("User does not exist!"));
-        Product foundproduct = productRepository.findById(order.getProductId())
-                .orElseThrow(() -> new RuntimeException("Product does not exist!"));
+
+        List<Product> allProducts = productRepository.findAll();
+        List<Product> foundProducts = new ArrayList<>();
+        for (Product product : allProducts) {
+            if (product.getId().equals(order.getProductId())) {
+                foundProducts.add(product);
+            }
+        }
+
+        /*List<Product> foundproduct = productRepository.findById(order.getProductId())
+                .orElseThrow(() -> new RuntimeException("Product does not exist!"));*/
         order.setUser(foundUser);
-        order.setProduct(foundproduct);
+        order.setProduct(foundProducts);
         return orderRepository.save(order);
     }
     //get all existing orders
