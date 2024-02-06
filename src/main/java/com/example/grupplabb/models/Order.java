@@ -1,31 +1,41 @@
 package com.example.grupplabb.models;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "order")
+import java.util.ArrayList;
+import java.util.List;
+
+/*
+Postman POST
+body:
+{
+    "userId": "as8d97a9s8d",
+    "productId": ["89as7ddas78", "89as7d89a7d"],
+    "totalPrice": "400"
+}
+ */
+
+
+@Document(collection = "orders")
 public class Order {
     @Id
     private String id;
-    @NotBlank(message = "Field cannot be blank")
 
+    //@NotBlank(message = "Field cannot be blank")
     private String userId;
 
     @DBRef
     private User user;
 
-    @NotBlank(message = "Field cannot be blank")
-
-    private String productId;
+    //@NotBlank(message = "Field cannot be blank")
+    private List<String> productId = new ArrayList<>();
 
     @DBRef
-    private Product product;
+    private List<Product> product = new ArrayList<>();
 
-    @NotNull(message = "Field cannot be blank.")
-
+    //@NotNull(message = "Field cannot be blank.")
     private int totalPrice;
 
 
@@ -43,13 +53,12 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-
-    public String getProductId() {
+    public List<String> getProductId() {
         return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public List<Product> getProduct() {
+        return product;
     }
 
     public String getUserId() {
@@ -58,5 +67,17 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setProductId(List<String> productId) {
+        this.productId = productId;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

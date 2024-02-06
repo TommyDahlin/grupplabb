@@ -1,12 +1,8 @@
 package com.example.grupplabb.controllers;
 
 import com.example.grupplabb.models.Order;
-import com.example.grupplabb.models.Product;
 import com.example.grupplabb.services.OrderService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.DateOperators;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +16,7 @@ public class OrderControllers {
 
     // POST create new order
     @PostMapping("/add")
-    public Order createOrder(@Valid @RequestBody Order order) {
+    public Order createOrder(@RequestBody Order order) {
         return orderService.createOrder(order);
     }
 
