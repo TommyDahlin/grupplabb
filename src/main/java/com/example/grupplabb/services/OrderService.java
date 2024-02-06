@@ -34,10 +34,15 @@ public class OrderService {
         }
         List<Product> allProducts = productRepository.findAll();
         List<Product> foundProducts = new ArrayList<>();
+        int fullPrice = 0;
+        int takePrice = 0;
         for (Product product : allProducts) {
             for (String productId : order.getProductId()) {
                 if (product.getId().equals(productId)) {
+                    takePrice = product.getPrice();
+                    fullPrice = takePrice + fullPrice;
                     foundProducts.add(product);
+                    order.setTotalPrice(fullPrice);
                 }
             }
         }
