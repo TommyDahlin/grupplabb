@@ -5,21 +5,34 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/*
+
+Postman - POST body instructions
+POST to http://localhost:8080/api/reviews/add
+body:
+{
+    "productId": "as7d68as76d8s76ad",
+    "userId": "asdas8d7as97dsa6d976",
+    "content": "This is a review."
+}
+
+*/
+
+
 @Document(collection = "reviews")
 public class Reviews {
 
     @Id
     private String id;
 
-
     @NotBlank(message = "Cannot be blank!")
-    private String productId;
+    private String productId; // This line is used to fill in line below.
 
     @DBRef
     private Product product;
 
     @NotBlank(message = "Cannot be blank!")
-    private String userId;
+    private String userId; // This line is used to fill in line below.
 
     @DBRef
     private User user;
