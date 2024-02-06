@@ -8,6 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/*
+    Quick CRUD API http://localhost:8080/api/reviews/*
+    C - add
+    R - find
+    U - "Does not have"
+    D - delete/:id
+*/
+
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController {
@@ -15,19 +23,19 @@ public class ReviewController {
     @Autowired
     ReviewsService reviewsService;
 
-    // POST review
+    // POST Add a review.
     @PostMapping("/add")
     public Reviews addReview(@Valid @RequestBody Reviews review) {
         return reviewsService.addReview(review);
     }
 
-    // GET reviews
-    @GetMapping("find")
+    // GET List all reviews.
+    @GetMapping("/find")
     public List<Reviews> listAllReviews() {
         return reviewsService.listAllReviews();
     }
 
-    // DELETE a review
+    // DELETE Remove a review from database.
     @DeleteMapping("/delete/{id}")
     public String deleteReview(@PathVariable("id") String id) {
         return reviewsService.deleteReview(id);
