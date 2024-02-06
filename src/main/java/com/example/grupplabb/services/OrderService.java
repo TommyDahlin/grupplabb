@@ -31,13 +31,12 @@ public class OrderService {
         List<Product> allProducts = productRepository.findAll();
         List<Product> foundProducts = new ArrayList<>();
         for (Product product : allProducts) {
-            if (product.getId().equals(order.getProductId())) {
-                foundProducts.add(product);
+            for (String productId : order.getProductId()) {
+                if (product.getId().equals(productId)) {
+                    foundProducts.add(product);
+                }
             }
         }
-
-        /*List<Product> foundproduct = productRepository.findById(order.getProductId())
-                .orElseThrow(() -> new RuntimeException("Product does not exist!"));*/
         order.setUser(foundUser);
         order.setProduct(foundProducts);
         return orderRepository.save(order);
