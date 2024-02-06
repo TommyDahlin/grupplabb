@@ -77,4 +77,7 @@ public class Order {
         this.product = product;
     }
 
+    public User getUser() {
+        return user;
+    }
 }

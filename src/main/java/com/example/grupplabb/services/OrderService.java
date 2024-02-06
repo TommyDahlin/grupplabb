@@ -25,9 +25,13 @@ public class OrderService {
 
     //create order
     public Order createOrder(Order order) {
-        User foundUser = userRepository.findById(order.getUserId())
-                .orElseThrow(() -> new RuntimeException("User does not exist!"));
-
+        List<User> allUsers = userRepository.findAll();
+        User foundUser = null;
+        for (User user : allUsers) {
+            if (user.getId().equals(order.getUserId())) {
+                foundUser = user;
+            }
+        }
         List<Product> allProducts = productRepository.findAll();
         List<Product> foundProducts = new ArrayList<>();
         for (Product product : allProducts) {
@@ -36,6 +40,9 @@ public class OrderService {
                     foundProducts.add(product);
                 }
             }
+        }
+        if (foundUser == null || foundProducts.isEmpty()) {
+            throw new RuntimeException("User or products must exist!");
         }
         order.setUser(foundUser);
         order.setProduct(foundProducts);
